@@ -1,22 +1,36 @@
 import portraitCropped from './resources/portraitCropped.jpg';
-import React from 'react';
+import React, { useState } from 'react'
 import StyleText from './StyleText';
 import Link from './Link';
 import chunlokResume from './resources/chunlok-resume.pdf';
+import TextStyles from './TextStyles';
+import { Spacing, Texts } from './styles';
 
 class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      aspectRatio: this.setState({aspectRatio: window.innerWidth / window.innerHeight})
+    };
+    window.addEventListener('load', this.windowListener);
+    window.addEventListener('resize', this.windowListener);
+    this.windowListener();
+  }
+
+  windowListener = () => {
+    this.setState({aspectRatio: window.innerWidth / window.innerHeight})
+  }
+
   render() {
+    console.log('huh');
+    console.log(this.state.aspectRatio);
     const divStyle = {
       fontSize: this.props.fontSize,
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: this.state.aspectRatio > 1.0 ? 'row' : 'column',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      initialScale: 1,
-      paddingLeft: 400,
-      paddingRight: 400,
-      paddingTop: 100,
-      gap: 300
     };
 
     const headerTextDivStyle = {
@@ -25,28 +39,35 @@ class Header extends React.Component {
       flexDirection: 'column',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      gap: '3rem',
+      gap: Spacing.base,
     }
 
     const portraitStyle = {
-      height: '70em',
-      width: '70em',
+      height: '14em',
+      width: '14em',
       borderRadius: '50%',
-      padding: 100,
+      padding: '1em',
     }
+
+    const descriptionText = `I am a game developer passionate about engineering, game design, art, and writing. I am currently a software engineer working on VALORANT at Riot Games. 
+    I recently graduated with a Master's degree in Computer Science at University of Alberta under Martha White,
+    and wrote my thesis on improving model-based reinforcement learning algorithms.
+    I previously interned at Facebook, Riot Games, Ab Initio, and Home Depot.`
 
     return (
       <div style={divStyle}>
         <div style={headerTextDivStyle}>
-          <StyleText fontSize={'20em'} fontWeight={400}>Chunlok Lo</StyleText>
-          <div>
-            <StyleText fontSize={'5em'} fontWeight={300}>I am currently pursuing a thesis-based Master's degree in Computer Science at University of Alberta. My current research interests is reinforcement learning. I have interned at Facebook, Riot Games, Ab Initio, and Home Depot. I got my undergraduate CS degree from Georgia Tech.</StyleText>
-            <div style={{ paddingTop: '4em', display: 'flex', flexDirection: 'column', gap: '1rem', }}>
-              <StyleText fontSize={'4.6em'} fontWeight={300}>Email: chunlok.lo1@gmail.com</StyleText>
-              <StyleText fontSize={'4.6em'} fontWeight={300}> <Link href={chunlokResume}>CV</Link> / <Link href='https://github.com/chunloklo'>Github</Link> / <Link href='https://www.linkedin.com/in/chunloklo/'>LinkedIn </Link></StyleText>
-            </div>
+          <div style={TextStyles.titleStyle}>Chunlok Lo</div>
+          <div style={{...Texts.descriptionText, textAlign: 'center', paddingLeft: Spacing.headerPadding, paddingRight: Spacing.headerPadding}}>{descriptionText}</div>
+          <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', 'gap': Spacing.base, justifyContent: 'center'}}>
+            <div style={Texts.descriptionText}>Email: chunlok.lo1@gmail.com</div>
+            <div style={Texts.descriptionText}>
+              <Link href={chunlokResume}>CV</Link> / 
+              <Link href='https://github.com/chunloklo'>Github</Link> / 
+              <Link href='https://www.linkedin.com/in/chunloklo/'>LinkedIn </Link>
+            </div>    
           </div>
-        </div>
+        </div> 
         <img style={portraitStyle} src={portraitCropped} />
       </div>
     );

@@ -4,9 +4,11 @@ class StyleText extends React.Component {
     render() {
         const divStyle = {
             fontSize: this.props.fontSize,
-            justifyContent: 'space-evenly',
+            // justifyContent: 'space-evenly',
             fontFamily: "Fira Sans",
+            fontStyle: this.props.fontStyle ? this.props.fontStyle : 'normal',
             fontWeight: this.props.fontWeight,
+            textAlign: this.props.textAlign ? this.props.textAlign : 'center',
         };
 
         return (

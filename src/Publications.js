@@ -3,6 +3,9 @@ import React from 'react';
 import StyleText from './StyleText';
 import Link from './Link';
 import chunlokResume from './resources/chunlok-resume.pdf';
+import TextStyles from './TextStyles';
+import PublicationEntry from './components/PublicationEntry';
+import SectionHeader from './components/SectionHeader';
 
 class Publications extends React.Component {
   render() {
@@ -12,10 +15,6 @@ class Publications extends React.Component {
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'start',
-      initialScale: 1,
-      paddingLeft: 400,
-      paddingRight: 400,
-      paddingTop: 100,
       // gap: 300
     };
 
@@ -28,31 +27,37 @@ class Publications extends React.Component {
       gap: '3rem',
     }
 
-    const portraitStyle = {
-      height: '70em',
-      width: '70em',
-      borderRadius: '50%',
-      padding: 100,
+    const authorStyle = {
+      fontSize: "1em",
+      fontWeight: 300
+    }
+
+    const conferenceStyle = {
+      fontSize: "1em",
+      fontWeight: 200
     }
 
     return (
       <div style={divStyle}>
-        <div style={{ alignSelf: 'start', paddingBottom: '4em' }}><StyleText fontSize={'10em'} fontWeight={400}>Publications</StyleText></div>
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-          <StyleText fontSize={'6em'} fontWeight={400}>Continual Auxiliary Task Learning</StyleText>
-          <div style={{ alignSelf: 'end', paddingLeft: '4em' }}>
-            <StyleText fontSize={'5em'} fontWeight={300}>Matthew McLeod, Chunlok Lo, Matthew Schlegel, Andrew Jacobsen, Raksha Kumaraswamy, Martha White, Adam White </StyleText>
-          </div>
-          <div style={{ alignSelf: 'end' }}>
-            <StyleText fontSize={'5em'} fontWeight={280}>Advances in Neural Information Processing Systems (NeurIPS), 2021</StyleText>
-          </div>
-          <div style={{ alignSelf: 'center', paddingLeft: '2em' }}>
-            <StyleText fontSize={'4em'} fontWeight={280}><Link href='https://proceedings.neurips.cc/paper/2021/file/68331ff0427b551b68e911eebe35233b-Paper.pdf'>[pdf]</Link></StyleText>
-          </div>
-
-        </div>
-        {/* <div ><StyleText fontSize={'8em'} fontWeight={400}>Publications</StyleText></div> */}
-
+        <SectionHeader title='Publications'/>
+        {/* <PublicationEntry 
+          title={'Goal Space Planning with Subgoal Models'} 
+          authors={'Chunlok Lo, Gabor Mihucz, Adam White, Farzane Aminmansour, Martha White'}
+          conference={'arXiv preprint'}
+          link={'https://arxiv.org/abs/2206.02902'}
+        /> */}
+        <PublicationEntry 
+          title={'Goal Space Planning with Subgoal Models'} 
+          authors={'Chunlok Lo'}
+          conference={'Master\'s Thesis, University of Alberta'}
+          link={'https://era.library.ualberta.ca/items/62d98104-a61c-403d-a07c-df8da53ee489'}
+        />
+        <PublicationEntry 
+          title={'Continual Auxiliary Task Learning'} 
+          authors={'Matthew McLeod, Chunlok Lo, Matthew Schlegel, Andrew Jacobsen, Raksha Kumaraswamy, Martha White, Adam White'}
+          conference={'Advances in Neural Information Processing Systems (NeurIPS), 2021'}
+          link={'https://arxiv.org/abs/2202.11133'}
+        />
       </div>
     );
   }
