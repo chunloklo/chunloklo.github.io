@@ -75,7 +75,7 @@ class ResearchProjects extends React.Component {
         <ResearchProjectEntry 
           title='Hierarchical Reinforcement Learning with Option Learning'
           author='Chunlok Lo, Eric Liu, Matthew Gombolay'
-          description='Explored combining hierarchical reinforcement learning with option learning methdologies to improve exploration'
+          description='Explored combining hierarchical reinforcement learning with option learning methodologies to improve exploration'
           link={hrlPresentation}
           linkText='Presentation'
           image={hrlOlPortrait}
